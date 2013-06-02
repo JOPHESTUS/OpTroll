@@ -5,10 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.Listener;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +20,9 @@ public class OpTroll extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(Listener, this);
 	}
 
+	public void HappyBirthdayHawkFalcon(){
+		
+	}
 
 	private void SetupConfig() {
 		getConfig().options().copyDefaults(true);

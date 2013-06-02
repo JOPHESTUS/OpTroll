@@ -3,11 +3,9 @@ package us.jophest.optroll;
 
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  
 public class OpTrollListener implements Listener {
@@ -20,11 +18,11 @@ public class OpTrollListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOW)
-	public void PlayerCommandPreprocessEvent(Player player,
+	public void onPCPE(PlayerCommandPreprocessEvent event, Player player,
             String message){
 		if(plugin.getConfig().getBoolean(player + ".Troll-mode")){
 			
-			event.setMessage("/suicide");
+			event.setMessage("/suicide"); 
 			}
 }
 }
