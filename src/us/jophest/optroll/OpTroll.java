@@ -51,6 +51,7 @@ public class OpTroll extends JavaPlugin {
 					}
 					else {
 						beingtrolled.add(trolled.getName());
+						getConfig().set("Trolled", beingtrolled);
 						saveConfig();
 						reloadConfig();
 						sender.sendMessage(ChatColor.BLUE + "" + trolled.getName() + " will now be 'OpTrolled'");

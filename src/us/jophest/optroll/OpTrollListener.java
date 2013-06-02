@@ -7,8 +7,6 @@ import java.util.List;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  
 public class OpTrollListener implements Listener {
@@ -24,6 +22,7 @@ public class OpTrollListener implements Listener {
 	public void onPCPE(PlayerCommandPreprocessEvent event){
 		List<String> beingtrolled = plugin.getConfig().getStringList("Trolled");
 		Player player = event.getPlayer();
+		plugin.reloadConfig();
 		if (beingtrolled.contains(player)){
 			event.setCancelled(true); 
 			player.performCommand("suicide");
