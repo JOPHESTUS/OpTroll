@@ -2,10 +2,13 @@ package us.jophest.optroll;
 
 
 
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  
 public class OpTrollListener implements Listener {
@@ -17,12 +20,19 @@ public class OpTrollListener implements Listener {
 		// TODO Auto-generated constructor stub
 	}
 
-	@EventHandler(priority = EventPriority.LOW)
-	public void onPCPE(PlayerCommandPreprocessEvent event, Player player,
-            String message){
-		if(plugin.getConfig().getBoolean(player + ".Troll-mode")){
-			
-			event.setMessage("/suicide"); 
-			}
+	@EventHandler
+	public void onPCPE(PlayerCommandPreprocessEvent event){
+		List<String> beingtrolled = plugin.getConfig().getStringList("Trolled");
+		Player player = event.getPlayer();
+		if (beingtrolled.contains(player)){
+			event.setCancelled(true); 
+			player.performCommand("suicide");
+		}
+	
 }
+//	@EventHandler
+//	public void onPlayerChat(AsyncPlayerChatEvent chat) {
+//		Player p = chat.getPlayer(); 
+//		p.sendMessage("This is working");
+//	}
 }

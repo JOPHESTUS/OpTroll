@@ -1,0 +1,7 @@
+name: OpTroll
+main: us.jophest.optroll.OpTroll
+version: 1.0
+author: JOPHESTUS
+description: Warns players for misconduct
+commands:
+    optroll:

@@ -1,7 +1,10 @@
 package us.jophest.optroll;
 
+import java.io.File;
+import java.util.List;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,31 +37,48 @@ public class OpTroll extends JavaPlugin {
 			String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("optroll")){
 			Player trolled = Bukkit.getServer().getPlayer(args[0]);
+			List<String> beingtrolled = getConfig().getStringList("Trolled");
 			if (sender.hasPermission("optroll.trollmaster")){
 				if (!trolled.hasPermission("optroll.immmune")){
-					if(getConfig().getBoolean(trolled + ".Troll-mode")){
-						getConfig().set(trolled + ".Troll-mode", false);
+					if(beingtrolled.contains(trolled.getName())){
+						beingtrolled.remove(trolled);
 						saveConfig();
 						reloadConfig();
 						
 						
+						
+						
 					}
 					else {
-						getConfig().set(trolled + ".Troll-mode", true);
+						beingtrolled.add(trolled.getName());
+						saveConfig();
+						reloadConfig();
+						sender.sendMessage(ChatColor.BLUE + "" + trolled.getName() + " will now be 'OpTrolled'");
 					}
-				}
+				}else{
+					
+				
+				sender.sendMessage(ChatColor.BLUE + "Error: That player is immune");
 					
 			}
+			
+			
+		}else{
+			sender.sendMessage(ChatColor.BLUE + "Error: You don't have permission");
 		}
 		
-		return true;
+		
 		
 	}
-	
-	
-			
-		
+		return false;
 	}
+}
+
+	
+	
+	
+	
+
 	
 	
 	
